@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import LoginScreen from './app/LoginScreen';
 import ForgotPasswordScreen from './app/ForgotPasswordScreen';
+import RegisterScreen from './app/RegisterScreen';
 
 
 const RootStack = StackNavigator(
@@ -12,6 +13,9 @@ const RootStack = StackNavigator(
     },
     ForgotPassword: {
       screen: ForgotPasswordScreen,
+    },
+    Register: {
+      screen: RegisterScreen
     },
   },
   {

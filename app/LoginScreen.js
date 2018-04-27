@@ -10,15 +10,13 @@ export default class LoginScreen extends React.Component {
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-            fontWeight: 'bold',
-            alignSelf: 'center'
+            fontWeight: 'bold'
         },
+        textAlign: 'center',
+        alignSelf: 'center'
     };
     onLoginClicked() {
         Alert.alert('LOGIN');
-    }
-    onRegisterClicked() {
-        Alert.alert('REGISTER');
     }
 
     render() {
@@ -52,7 +50,7 @@ export default class LoginScreen extends React.Component {
                         </View>
                         <View style={{ flex: 1, marginLeft: 5 }} >
                             <Button
-                                onPress={this.onRegisterClicked}
+                                onPress={() => this.props.navigation.navigate('Register')}
                                 title="Register"
                                 color="#841584"
                                 accessibilityLabel="register button"
