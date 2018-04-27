@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import CreatedByView from './components/CreatedByView';
 
-class ForgotPasswordScreen extends Component {
-
+export default class ForgotPasswordScreen extends Component {
+    static navigationOptions = {
+        title: 'Reset Password',
+        headerStyle: {
+            backgroundColor: '#841584',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+        },
+    };
     render() {
         return (
             <View style={{
                 margin: 20
             }}>
-                <Text style={{ marginTop: 30, marginBottom: 20, fontSize: 30, color: '#841584', alignSelf: 'center' }}>Forgot Password</Text>
+
                 <View style={styles.allInputContainer}>
                     <Text>User Name</Text>
                     <TextInput
@@ -38,6 +47,3 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     }
 });
-
-
-export default ForgotPasswordScreen;
