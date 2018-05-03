@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import CreatedByView from './components/CreatedByView';
+import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
+import Constants from './Constants'
 
 export default class RegisterScreen extends Component {
     static navigationOptions = {
         title: 'Register',
         headerStyle: {
-            backgroundColor: '#841584',
+            backgroundColor: Constants.COLOR.DARK_PURPLE,
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
             fontWeight: 'bold',
         },
     };
+    onSelect(index, value) {
+        this.setState({
+            text: `Selected index: ${index} , value: ${value}`
+        })
+    }
     render() {
         return (
             <View style={{
@@ -20,16 +27,63 @@ export default class RegisterScreen extends Component {
             }}>
 
                 <View style={styles.allInputContainer}>
-                    <Text>User Name</Text>
+                    <Text>Email</Text>
                     <TextInput
                         style={{ height: 40 }}
                         onChangeText={(text) => this.setState({ text })}
                     />
+                    <Text>Password</Text>
+                    <TextInput
+                        style={{ height: 40 }}
+                        onChangeText={(text) => this.setState({ text })}
+                        secureTextEntry={true}
+                    />
+                    <Text>Gender</Text>
+                    <RadioGroup
+                        onSelect={(index, value) => this.onSelect(index, value)}
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+
+                        }}
+                    >
+                        <RadioButton value={'male'} >
+                            <Text>Male</Text>
+                        </RadioButton>
+
+                        <RadioButton value={'female'} >
+                            <Text>Female</Text>
+                        </RadioButton>
+                    </RadioGroup>
+                    <Text>Date of Birth:</Text>
+                    <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+                        <Text style={{ flex: 1, fontSize: 12 }}>Date</Text>
+                        <Text style={{ flex: 1, fontSize: 12 }}>Month</Text>
+                        <Text style={{ flex: 1, fontSize: 12 }}>Year</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+                        <TextInput
+                            style={{ height: 40, flex: 1 }}
+                            onChangeText={(text) => this.setState({ text })}
+                            keyboardType='numeric'
+                        />
+                        <TextInput
+                            style={{ height: 40, flex: 1 }}
+                            onChangeText={(text) => this.setState({ text })}
+                            keyboardType='numeric'
+                        />
+                        <TextInput
+                            style={{ height: 40, flex: 1 }}
+                            onChangeText={(text) => this.setState({ text })}
+                            keyboardType='numeric'
+                        />
+                    </View>
                     <Button
                         onPress={this.onLoginClicked}
                         title="Submit"
-                        color="#841584"
-                        accessibilityLabel="submit button"
+                        color={Constants.COLOR.DARK_PURPLE}
+                        accessibilityLabel="submit button text"
                     />
 
                 </View>

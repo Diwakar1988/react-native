@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import CreatedByView from './components/CreatedByView';
+import Constants from './Constants'
 
 export default class ForgotPasswordScreen extends Component {
     static navigationOptions = {
         title: 'Reset Password',
         headerStyle: {
-            backgroundColor: '#841584',
+            backgroundColor: Constants.COLOR.DARK_PURPLE,
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
@@ -28,7 +29,7 @@ export default class ForgotPasswordScreen extends Component {
                     <Button
                         onPress={this.onLoginClicked}
                         title="Submit"
-                        color="#841584"
+                        color={Constants.COLOR.DARK_PURPLE}
                         accessibilityLabel="submit button"
                     />
 

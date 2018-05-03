@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import CreatedByView from './components/CreatedByView'
+import Constants from './Constants'
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
         title: 'A React-Native Application',
         headerStyle: {
-            backgroundColor: '#841584',
+            backgroundColor: Constants.COLOR.DARK_PURPLE,
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
@@ -26,7 +27,7 @@ export default class LoginScreen extends React.Component {
             }}>
 
                 <View style={styles.allInputContainer}>
-                    <Text>User Name</Text>
+                    <Text>Email</Text>
                     <TextInput
                         style={{ height: 40 }}
                         onChangeText={(text) => this.setState({ text })}
@@ -44,7 +45,7 @@ export default class LoginScreen extends React.Component {
                             <Button
                                 onPress={this.onLoginClicked}
                                 title="Login"
-                                color="#841584"
+                                color={Constants.COLOR.DARK_PURPLE}
                                 accessibilityLabel="login button"
                             />
                         </View>
@@ -52,7 +53,7 @@ export default class LoginScreen extends React.Component {
                             <Button
                                 onPress={() => this.props.navigation.navigate('Register')}
                                 title="Register"
-                                color="#841584"
+                                color={Constants.COLOR.DARK_PURPLE}
                                 accessibilityLabel="register button"
                             />
                         </View>
