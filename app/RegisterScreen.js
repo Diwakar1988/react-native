@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import CreatedByView from './components/CreatedByView';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import Constants from './Constants'
+import { Dropdown } from 'react-native-material-dropdown';
 
 export default class RegisterScreen extends Component {
     static navigationOptions = {
@@ -19,6 +20,9 @@ export default class RegisterScreen extends Component {
         this.setState({
             text: `Selected index: ${index} , value: ${value}`
         })
+    }
+    onRegisterClicked() {
+
     }
     render() {
         return (
@@ -79,8 +83,13 @@ export default class RegisterScreen extends Component {
                             keyboardType='numeric'
                         />
                     </View>
+                    <Dropdown
+                        label='Highest Qualification'
+                        data={Constants.ARRAY_QUALIFICATIONS}
+                        baseColor='#000000'
+                    />
                     <Button
-                        onPress={this.onLoginClicked}
+                        onPress={() => this.onRegisterClicked()}
                         title="Submit"
                         color={Constants.COLOR.DARK_PURPLE}
                         accessibilityLabel="submit button text"

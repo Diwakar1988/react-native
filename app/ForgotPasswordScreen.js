@@ -14,6 +14,9 @@ export default class ForgotPasswordScreen extends Component {
             fontWeight: 'bold',
         },
     };
+    onSubmit() {
+
+    }
     render() {
         return (
             <View style={{
@@ -27,7 +30,7 @@ export default class ForgotPasswordScreen extends Component {
                         onChangeText={(text) => this.setState({ text })}
                     />
                     <Button
-                        onPress={this.onLoginClicked}
+                        onPress={() => this.onSubmit()}
                         title="Submit"
                         color={Constants.COLOR.DARK_PURPLE}
                         accessibilityLabel="submit button"
