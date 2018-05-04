@@ -1,7 +1,10 @@
 apply plugin: "com.android.application"
+import com.android.build.OutputFile
+apply from: "react.gradle"
 
-apply from: "../../node_modules/react-native/react.gradle"
-
+project.ext.react = [
+    entryFile: "index.js"
+]
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
@@ -26,6 +29,9 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
     }
     signingConfigs {
         release {
@@ -35,7 +41,14 @@ android {
                 keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
-    
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk false  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
@@ -43,12 +56,29 @@ android {
             signingConfig signingConfigs.release
             debuggable false
         }
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            // For each separate APK per architecture, set a unique version code as described here:
+            // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def abi = output.getFilter(OutputFile.ABI)
+            if (abi != null) {  // null for the universal-debug, universal-release variants
+                output.versionCodeOverride =
+                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    implementation "com.facebook.react:react-native:+"
 }
 
 // Run this once to be able to run the application with BUCK
