@@ -23,3 +23,5 @@ android/build/
 android/.gradle/
 android/.idea/
 *.iml
+
+ios/Build/

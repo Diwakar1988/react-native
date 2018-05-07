@@ -2,3 +2,15 @@ Make js bundle using this command:
     $PROJECT_DIR$ react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 Generate apk command:
     $PROJECT_DIR/android$ ./gradlew clean && ./gradlew assembleDebug
+
+Run android emulator:
+    *Make sure your adb and emulator path set in your environmental variables to execute commands.
+
+    0. emulator cmd path:   /sdk/emulator/
+    1. list emulator:       emulator -list-avds
+    2. start emulator:      emulator -avd Pixel_API_27 -netdelay none -netspeed full
+    4. run app:             ract-native run-android
+
+Run ios emulator:
+    *make sure you've installed latest xcode
+    1. run app:             ract-native run-ios --simulator="name"
